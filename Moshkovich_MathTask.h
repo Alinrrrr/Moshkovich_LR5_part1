@@ -5,13 +5,18 @@
 using namespace std;
 
 //ф-я контроля вводимых данных
-bool UserInput(string input) {
+bool UserInput(const string& input) {
     //если строка пустая - ввод некорректен
     if (input.empty()) return false;
+    for (double i = 0; i < input.length(); ++i) {
+        if(!isdigit(input[i])) {
+            return false;
+        }
+    }
     //попытаться
     try {
         int number = stoi(input);
-        if (number <= 0) return false;
+        if (number < 0) return false;
     }
     catch (...)
     {
